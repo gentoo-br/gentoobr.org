@@ -30,6 +30,8 @@
                         {%- for href, title in [
                             (url_for('views.home'), 'Página Inicial'),
                             (url_for('views.content', slug='sobre'), 'Sobre'),
+                            (url_for('views.content', slug='publique-seu-artigo'), 'Publique seu artigo'),
+                            (url_for('views.content', slug='colaboradores'), 'Colaboradores'),
                         ] %}
                         <li><a href="{{ href }}" class="nav">{{ title }}</a></li>
                         {%- endfor %}
