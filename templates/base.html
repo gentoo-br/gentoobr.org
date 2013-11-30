@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="generator" content="blohg {{ version }}" />
+        <link rel="stylesheet" type="text/css" href="{{
+            url_for('static', filename='screen.css') }}" />
+        <link rel="alternate" type="application/atom+xml" href="{{
+            url_for('views.atom') }}" title="{{ config.TITLE }}" />
+        <link rel="shortcut icon" href="{{ url_for('static',
+            filename='favicon.ico') }}" />
+        <title>{{ config.TITLE }}{% block title %}{% endblock %}</title>
+
+<!-- begin disqus header -->
+{% block disqus_header %}{% endblock %}
+
+<!-- end disqus header -->
+
+    </head>
+    <body>
+        <div id="main_container">
+            <div id="header">
+                <div id="logo">
+                    <img src="{{ url_for('static', filename='logo.png')
+                    }}" alt="{{ config.TITLE }}" border="0" />
+                    <h1>{{ config.TITLE }}</h1>
+                </div>
+                <div id="menu_tab">
+                    <ul class="menu">
+                        {%- for href, title in [
+                            (url_for('views.home'), 'Página Inicial'),
+                            (url_for('views.content', slug='sobre'), 'Sobre'),
+                        ] %}
+                        <li><a href="{{ href }}" class="nav">{{ title }}</a></li>
+                        {%- endfor %}
+                    </ul>
+                </div>
+            </div>
+            <div id="main_content">
+                <div class="left_content">
+
+    <!-- begin content -->
+    {% block body %}{% endblock %}
+
+    <!-- end content -->
+
+                </div>
+                <div class="right_content">
+                    <!--<div>from the blog</div>-->
+                    <div class="right_box">
+                        <div class="right_box_top"></div>
+                        <div class="right_box_center">
+                            <div class="text_box">
+                                <h3>Membros</h3>
+                                <ul>
+                                </ul>
+                            </div>
+                            {%- if tags %}
+                            <div class="text_box">
+                                <h3>Tags</h3>
+                                <ul>
+                                    {%- for tag in tags %}
+                                    <li><a href="{{ url_for('views.tag',
+                                        tag=tag) }}">{{ tag }}</a></li>
+                                    {%- endfor %}
+                                </ul>
+                            </div>
+                            {%- endif %}
+                            <div class="text_box">
+                                <h3>Nossos sites</h3>
+                                <ul>
+                                    {%- for href, name in [
+                                        ('http://gentoo-br.codepad.org/', 'Codepad'),
+                                        ('https://www.facebook.com/gentoobrasil', 'Facebook'),
+                                        ('http://twitter.com/gentoobr', 'Twitter'),
+                                    ] %}
+                                    <li><a href="{{ href }}">{{ name }}</a></li>
+                                    {%- endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="right_box_bottom"></div>
+                    </div>
+                    
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div id="footer">
+                <div class="left_footer">
+                    &copy;2012 {{ config.AUTHOR }} |
+                    Movido a:
+                    <a href="http://blohg.org/">blohg {{ version }}</a>
+                    <br />
+                    Atenção: Este site não possui vínculo algum com a
+                    <em>Gentoo Foundation, Inc.</em>
+                    <br />
+                    Layout baseado em template criado por:
+                    <a href="http://indeziner.com/">INDEZINER</a>
+                </div>
+                <div class="right_footer">
+                    {%- for href, name in [
+                        (url_for('views.home'), 'Home'),
+                        (url_for('views.content', slug='sobre'), 'Sobre'),
+                    ] %}
+                    <a href="{{ href }}">{{ name }}</a></li>
+                    {%- if not loop.last %} | {% endif -%}
+                    {%- endfor %}
+                </div>
+            </div>
+        </div>
+
+<!-- begin disqus footer -->
+{% block disqus_footer %}{% endblock %}
+
+<!-- end disqus footer -->
+
+<!-- begin google analytics -->
+
+{% if not config.DEBUG -%}
+<script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+    var pageTracker = _gat._getTracker("UA-2886928-4");
+    pageTracker._initData();
+    pageTracker._trackPageview();
+</script>
+{%- endif %}
+
+<!-- end google analytics -->
+
+    </body>
+</html>
