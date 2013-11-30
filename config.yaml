@@ -1,8 +1,5 @@
-TITLE: Your title
-TITLE_HTML: Your HTML title
-TAGLINE: Your cool tagline
-#POSTS_PER_PAGE: 10
-AUTHOR: Your name
-#DISQUS: your-disqus-id
-TIMEZONE: UTC
-#POST_EXT: .rst
+TITLE: Gentoo Linux Brasil
+TITLE_HTML: Gentoo Linux Brasil
+AUTHOR: Grupo de usuários Gentoo Linux do Brasil
+TIMEZONE: America/Sao_Paulo
+POSTS_PER_PAGE: 5
